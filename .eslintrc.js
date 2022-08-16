@@ -4,7 +4,7 @@ module.exports = {
     node: true
   },
   extends: [
-    // 'plugin:vue/vue3-essential',
+    'plugin:vue/vue3-essential',
     '@vue/standard',
     '@vue/typescript/recommended'
   ],
@@ -12,6 +12,7 @@ module.exports = {
     ecmaVersion: 2020
   },
   rules: {
+    'vue/multi-word-component-names': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
   }
