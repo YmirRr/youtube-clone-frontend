@@ -19,14 +19,17 @@
 import { login } from '@/api/user'
 import { defineComponent, reactive, ref } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
+import { useStore } from '@/store'
 
 const useLogin = () => {
   const router = useRouter()
+  const store = useStore()
+  console.log(store.state.count)
   const user = reactive({
     email: 'ymir1660418573@sina.com',
     password: '123456'
   })
-  const errors = ref([])
+  const errors: any = ref([])
   const isLoading = ref(false)
   const handleSubmit = async () => {
     isLoading.value = true

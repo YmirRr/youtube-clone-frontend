@@ -12,7 +12,9 @@ module.exports = {
     ecmaVersion: 2020
   },
   rules: {
-    'vue/multi-word-component-names': 'off',
+    'symbol-description': 'off', // Symbol 类型的数据在声明时是否必须有描述
+    '@typescript-eslint/no-explicit-any': 'off', // any 类型变量需要明确指定类型
+    'vue/multi-word-component-names': 'off', // 组件名称能否使用单字符
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
   }
