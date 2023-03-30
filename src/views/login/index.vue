@@ -17,14 +17,15 @@
 
 <script lang="ts">
 import { login } from '@/api/user'
-import { defineComponent, reactive, ref } from '@vue/runtime-core'
-import { useRouter } from 'vue-router'
+import { defineComponent, reactive, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useStore } from '@/store'
 
 const useLogin = () => {
   const router = useRouter()
   const store = useStore()
-  console.log(store.state.count)
+  const route = useRoute()
+  // store.state.count
   const user = reactive({
     email: 'ymir1660418573@sina.com',
     password: '123456'
@@ -36,11 +37,12 @@ const useLogin = () => {
     errors.value = []
     try {
       const { data } = await login(user)
+      store.commit('setUser', data.user)
+      const redirect = (route.query.redirect || '/') as string
       console.log(data)
-      router.push({
-        name: 'home'
-      })
+      router.push(redirect)
     } catch (err: any) {
+      console.log(err)
       if (err.response.status === 422) {
         errors.value = err.response.data.detail
       }
@@ -56,7 +58,7 @@ const useLogin = () => {
 }
 
 export default defineComponent({
-  name: 'login-index-page',
+  name: 'login-page',
   setup () {
     return {
       ...useLogin()
