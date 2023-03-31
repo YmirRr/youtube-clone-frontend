@@ -7,7 +7,8 @@
       <input class="search" type="text" placeholder="Search" value="" />
     </div>
     <ul>
-      <template v-if="$store.state.user">
+      <!-- <template v-if="$store.state.user"> -->
+      <template v-if="user">
         <li>
           <div>
             <label for="video-upload">
@@ -68,3 +69,13 @@
     </ul>
   </div>
 </template>
+
+<script lang="ts">
+import { useUser } from '@/store'
+export default {
+  setup () {
+    const { user } = useUser()
+    return { user }
+  }
+}
+</script>

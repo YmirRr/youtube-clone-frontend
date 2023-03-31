@@ -19,11 +19,13 @@
 import { login } from '@/api/user'
 import { defineComponent, reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useStore } from '@/store'
+// import { useStore } from '@/store'
+import { useUser } from '@/store'
 
 const useLogin = () => {
   const router = useRouter()
-  const store = useStore()
+  // const store = useStore()
+  const { setUser } = useUser()
   const route = useRoute()
   // store.state.count
   const user = reactive({
@@ -37,7 +39,8 @@ const useLogin = () => {
     errors.value = []
     try {
       const { data } = await login(user)
-      store.commit('setUser', data.user)
+      // store.commit('setUser', data.user)
+      setUser(data.user)
       const redirect = (route.query.redirect || '/') as string
       console.log(data)
       router.push(redirect)

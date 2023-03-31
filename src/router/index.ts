@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import AppLayout from '@/layout/AppLayout.vue'
-import { store } from '@/store'
+// import { store } from '@/store'
+import { useUser } from '@/store'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -33,7 +34,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
-  const { user } = store.state
+  // const { user } = store.state
+  const { user } = useUser()
   // 而不是去检查每条路由记录
   // to.matched.some(record => record.meta.requiresAuth)
   if (to.meta.requiresAuth && !user) {

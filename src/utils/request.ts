@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { store } from '@/store'
+// import { store } from '@/store'
+import { useUser } from '@/store'
 
 export const request = axios.create({
   baseURL: process.env.VUE_APP_API_BASE_URL
@@ -7,7 +8,8 @@ export const request = axios.create({
 
 // 请求拦截器
 request.interceptors.request.use(config => {
-  const { user } = store.state
+  // const { user } = store.state
+  const { user } = useUser()
   if (user) {
     config.headers.Authorization = `Bearer ${user.token}`
   }
